@@ -1,8 +1,7 @@
 import React from 'react'
 
 const Shop = () => {
-  return (
-    <div>
+  return (<div>
       SHOP
     </div>
   )
