@@ -8,6 +8,11 @@ import DropdownMenu from 'react-bootstrap/DropdownMenu'
 const CreateDevice = ({show, onHide}) => {
   const {devices} = useContext(Context)
   const [info, setInfo] = useState([])
+  const [name, setName] = useState('')
+  const [price, setPrice] = useState(0)
+  const [type, setType] = useState(null)
+  const [brand, setBrand] = useState(null)
+  const [image, setImage] = useState(null)
 
   const addInfo = () => {
     setInfo([...info, {title: '', description: '', number: Date.now()}])
@@ -15,6 +20,10 @@ const CreateDevice = ({show, onHide}) => {
 
   const removeInfo = (number) => {
     setInfo(info.filter(i => i.number !== number))
+  }
+
+  const selectFile = e => {
+    setImage(e.target.files[0])
   }
 
   return (
@@ -53,16 +62,21 @@ const CreateDevice = ({show, onHide}) => {
           <Row>
             <Form.Control
               placeholder={'Введите название устройства'}
+              value={name}
+              onChange={e => setName(e.target.value)}
             />
             <Form.Control
               className="mt-2"
               placeholder={'Введите цену'}
               type="number"
+              value={price}
+              onChange={e => setPrice(Number(e.target.value))}
             />
             <Form.Control
               className="mt-2"
               placeholder={'Загрузить изображение'}
               type="file"
+              onChange={selectFile}
             />
             <hr/>
             <Button
