@@ -8,7 +8,7 @@ const Pages = observer(() => {
   const pageCount = Math.ceil(devices.totalCount / devices.limit)
   const pages = []
 
-  for (let i; i < pageCount; i +=1) {
+  for (let i = 0; i < pageCount; i +=1) {
     pages.push(i + 1)
   }
 

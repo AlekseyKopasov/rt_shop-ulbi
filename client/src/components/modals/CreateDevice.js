@@ -1,11 +1,8 @@
 import React, {useContext, useState} from 'react'
-import {Button, Col, Dropdown, Form, FormControl, Modal, Row} from 'react-bootstrap'
+import {Button, Col, Dropdown, Form, Modal, Row} from 'react-bootstrap'
 import {Context} from '../../index'
-import DropdownToggle from 'react-bootstrap/DropdownToggle'
-import DropdownItem from 'react-bootstrap/DropdownItem'
-import DropdownMenu from 'react-bootstrap/DropdownMenu'
 import {useEffect} from 'react'
-import {createDevice, fetchBrands, fetchDevices, fetchTypes} from '../../http/deviceAPI'
+import {createDevice, fetchBrands, fetchTypes} from '../../http/deviceAPI'
 import {observer} from 'mobx-react-lite'
 
 const CreateDevice = observer(({show, onHide}) => {
@@ -13,8 +10,6 @@ const CreateDevice = observer(({show, onHide}) => {
   const [info, setInfo] = useState([])
   const [name, setName] = useState('')
   const [price, setPrice] = useState(0)
-  const [type, setType] = useState(null)
-  const [brand, setBrand] = useState(null)
   const [image, setImage] = useState(null)
 
   useEffect(() => {
@@ -139,9 +134,10 @@ const CreateDevice = observer(({show, onHide}) => {
                   className="ps-0 w-auto"
                 >
                   <Form.Control
-                    value={i.title}
+                    value={i.value}
                     placeholder={'Название характеристи'}
-                    onChange={(e) => setInfo('title', e.target.value, i.number)}
+                    onChange={(e) =>
+                      changeInfo('title', e.target.value, i.number)}
                   />
                 </Col>
                 <Col
@@ -149,9 +145,10 @@ const CreateDevice = observer(({show, onHide}) => {
                   className="ps-0 w-auto"
                 >
                   <Form.Control
-                    value={i.description}
+                    value={i.value}
                     placeholder={'Описание характеристи'}
-                    onChange={(e) => setInfo('description', e.target.value, i.number)}
+                    onChange={(e) =>
+                      changeInfo('description', e.target.value, i.number)}
                   />
                 </Col>
                 <Col
